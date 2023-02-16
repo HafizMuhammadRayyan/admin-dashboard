@@ -20,7 +20,7 @@ app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
-mongoose.set('strictQuery', false);
+mongoose.set("strictQuery", false);
 
 /* ROUTES */
 app.use("/client", clientRoutes);
@@ -31,7 +31,7 @@ app.use("/sales", salesRoutes);
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect(process.env.MONGO_URL_LOCAL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
