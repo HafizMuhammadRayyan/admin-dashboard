@@ -11,6 +11,11 @@ import generalRoutes from "./routes/general.js";
 import managementRoutes from "./routes/management.js";
 import salesRoutes from "./routes/sales.js";
 
+// MOCK DATA APP IN DATABASE
+import ProductModel from "./models/product.js";
+import ProductStatModel from "./models/productStat.js";
+import { dataProduct, dataProductStat } from "./data/index.js";
+
 /* CONFIGURATION */
 dotenv.config();
 const app = express();
@@ -32,11 +37,15 @@ app.use("/sales", salesRoutes);
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect(process.env.MONGO_URL_LOCAL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+
+    // Add Mock data
+    // ProductModel.create(dataProduct)
+    // ProductStatModel.insertMany(dataProductStat)
   })
   .catch((error) => console.log(`Server Not Connect Error: ${error}`));
