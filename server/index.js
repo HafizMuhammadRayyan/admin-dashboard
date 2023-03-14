@@ -14,7 +14,16 @@ import salesRoutes from "./routes/sales.js";
 // MOCK DATA APP IN DATABASE
 import ProductModel from "./models/product.js";
 import ProductStatModel from "./models/productStat.js";
-import { dataProduct, dataProductStat } from "./data/index.js";
+import TransactionModel from "./models/transaction.js";
+import OverallStatsModel from "./models/OverallStat.js";
+import AffiliateStatModel from "./models/AffiliateStat.js"
+import {
+  dataProduct,
+  dataProductStat,
+  dataTransaction,
+  dataOverallStat,
+  dataAffiliateStat,
+} from "./data/index.js";
 
 /* CONFIGURATION */
 dotenv.config();
@@ -37,7 +46,7 @@ app.use("/sales", salesRoutes);
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;
 mongoose
-  .connect(process.env.MONGO_URL_LOCAL, {
+  .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -47,5 +56,8 @@ mongoose
     // Add Mock data
     // ProductModel.create(dataProduct)
     // ProductStatModel.insertMany(dataProductStat)
+    // TransactionModel.insertMany(dataTransaction)
+    // OverallStatsModel.insertMany(dataOverallStat)
+    // AffiliateStatModel.insertMany(dataAffiliateStat)
   })
   .catch((error) => console.log(`Server Not Connect Error: ${error}`));
