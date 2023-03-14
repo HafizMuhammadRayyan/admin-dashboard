@@ -13,7 +13,6 @@ export const getUser = async (req, res) => {
 };
 
 export const getDashboard = async (req, res) => {
-  console.log("okkk");
   try {
     // Hardcoded Values
     const currentMonth = "November";
@@ -39,7 +38,6 @@ export const getDashboard = async (req, res) => {
     const thisMonthStats = overallState[0].monthlyData.find(({ month }) => {
       return month === currentMonth;
     });
-    console.log("🚀 ~ file: general.js:42 ~ thisMonthStats ~ thisMonthStats:", thisMonthStats)
 
     const todayStats = overallState[0].dailyData.find(({ date }) => {
       return date === currentDay;
